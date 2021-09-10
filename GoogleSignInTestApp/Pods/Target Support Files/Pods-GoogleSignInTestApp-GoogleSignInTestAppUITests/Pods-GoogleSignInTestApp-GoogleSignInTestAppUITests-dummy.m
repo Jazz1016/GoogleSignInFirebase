@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_GoogleSignInTestApp_GoogleSignInTestAppUITests : NSObject
+@end
+@implementation PodsDummy_Pods_GoogleSignInTestApp_GoogleSignInTestAppUITests
+@end
