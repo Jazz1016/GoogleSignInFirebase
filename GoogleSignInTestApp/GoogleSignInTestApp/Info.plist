@@ -26,6 +26,14 @@
 				<string>com.googleusercontent.apps.862596839472-00urukhtnpfu298po96o6aook318kp81</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>James-Lea.GoogleSignInTestApp</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
