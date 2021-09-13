@@ -34,6 +34,14 @@
 				<string>James-Lea.GoogleSignInTestApp</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.862596839472-t2pmpsq2hdu0tt34956t1906tau9m3uq</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

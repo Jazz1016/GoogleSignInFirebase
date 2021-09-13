@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var signOutButton: UIButton!
     
+    // MARK: - Properties
+    let signInConfig = GIDConfiguration.init(clientID: "862596839472-00urukhtnpfu298po96o6aook318kp81.apps.googleusercontent.com")
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +25,19 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func signOutTapped(_ sender: Any) {
-        
+    @IBAction func signInTapped(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            guard error == nil else { return }
+            guard let user = user else { return }
+            
+            let emailAddress = user.profile?.email
+            print(emailAddress)
+        }
     }
     
     @IBAction func signOutButtonTapped(_ sender: Any) {
-        
+        GIDSignIn.sharedInstance.signOut()
     }
-    
-    func signIn(){
-        
-    }
-    
-    
     
     
     // MARK: - FNs

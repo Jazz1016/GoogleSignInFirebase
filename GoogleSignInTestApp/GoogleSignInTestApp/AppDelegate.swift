@@ -13,22 +13,31 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
-        
-        GIDSignIn.sharedInstance.clientID = "[OAuth_Client_ID]"
-        GIDSignIn.sharedInstance.delegate = self
-        
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                // Show the app's signed-out state.
+            } else {
+                // Show the app's signed-in state.
+            }
+        }
         return true
     }
     
-    @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any])
-    -> Bool {
+    func application(
+        _ app: UIApplication,
+        open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+        var handled: Bool
         
+        handled = GIDSignIn.sharedInstance.handle(url)
+        if handled {
+            return true
+        }
         
-        return GIDSignIn.sharedInstance.handle(url)
+        // Handle other custom URL types.
+        
+        // If not handled by this app, return false.
+        return false
     }
 
     // MARK: UISceneSession Lifecycle
