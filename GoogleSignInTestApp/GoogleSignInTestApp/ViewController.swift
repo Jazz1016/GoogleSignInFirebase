@@ -30,13 +30,27 @@ class ViewController: UIViewController {
             guard error == nil else { return }
             guard let user = user else { return }
             
+            print(user)
+            
             let emailAddress = user.profile?.email
-            print(emailAddress)
+            guard let idToken = user.authentication.idToken else { return }
+            print(user.authentication)
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.authentication.accessToken)
+            Auth.auth().signIn(with: credential) { result, error in
+                if let error = error {
+                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                }
+                if result != nil {
+                    print(Auth.auth().currentUser ?? "FAILED")
+                }
+            }
         }
     }
     
     @IBAction func signOutButtonTapped(_ sender: Any) {
         GIDSignIn.sharedInstance.signOut()
+        
     }
     
     
@@ -64,6 +78,8 @@ class ViewController: UIViewController {
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
+            
+            
             
             // ...
         }
